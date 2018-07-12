@@ -196,3 +196,8 @@
 </g>
 </svg>
 
+
+## TEST 2
+
+
+![](simulation-tutorial_files/figure-markdown_github/unnamed-chunk-7-1.svg)
