@@ -231,7 +231,7 @@ ss1 %>% kable
 
 #### Plot
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, dev='svg'}
 
 tgsify::plotstyle(style = upright)
 plot(ss1$trt_effect, ss1$power, xlab = "Treatment effect", ylab = "Power")
