@@ -28,7 +28,9 @@ height:none;
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 require(DiagrammeR)
+require(DiagrammeRsvg)
 require(knitr)
+require(htmltools)
 ```
 
 ## Background
@@ -58,7 +60,7 @@ The questions that follow require you to perform a simulation study.  Please rem
 
 Here is a conceptual diagram for how one might think about type I or type II error rates (or any other operating characteristic) for an analysis procedure.  In a typical setting, there are population parameters that one hopes to estimate by collecting and analyzing data.  The population parameters are unknown, and the accuracy of the conclusions is unknown.
 
-```{r, fig.height = 3, echo = FALSE}
+```{r, fig.height = 3, echo = FALSE, results='asis'}
 a <- grViz("
 digraph boxes_and_circles {
 
@@ -88,12 +90,12 @@ A -> D [tailport = se, headport = s, style = invis]
 }
 ")
 a$height <- "auto"
-a
+a %>% export_svg #%>% HTML #%>% html_print %>% readLines
 ```
 
 In a simulation setting, the researcher sets the population parameters then generates data using the parameters.  After completing the analysis, the researcher can then evaluate the accuracy of the conclusions.  If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
 
-```{r, fig.height = 3, echo = FALSE}
+```{r, fig.height = 3, echo = FALSE, results='asis'}
 b <- grViz("
 digraph boxes_and_circles {
 
@@ -123,12 +125,12 @@ A -> D [tailport = se, headport = s]
 }
 ")
 b$height <- "auto"
-b
+b %>% export_svg #%>% HTML #%>% html_print
 ```
 
 The framework described above suggests how one my write modular code to perform the simulation.  One can write a function to perform each of the primary tasks.  For example:
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='asis'}
 c <- grViz("
 digraph boxes_and_circles {
 
@@ -158,7 +160,7 @@ A -> D [tailport = se, headport = s]
 }
 ")
 c$height <- "auto"
-c
+c %>% export_svg #%>% HTML #%>% html_print
 ```
 
 ### Example
@@ -172,6 +174,8 @@ The primary endpoint will be analyzed with a Wilcoxon two sample test.
 Researchers want to know the minimal detectable difference at 80% power if they enroll 150 patients in each arm.
 
 ```{r}
+require(magrittr, quietly = TRUE)
+
 parameters <- c(N = 150, trt_effect = 1)
 
 generate_data <- function(parameters){
@@ -214,6 +218,7 @@ if("simulation-results.rds" %in% list.files()){
   ss1 <- readRDS("simulation-results.rds")
 }else{
   for(i in 1:nrow(ss1)){ss1[i,4] <- ss1[i,1:3] %>% as.numeric %>% M_rep %>% mean}  
+  saveRDS(ss1, "simulation-results.rds")
 }
 
 ```
