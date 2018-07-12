@@ -45,7 +45,6 @@ The questions that follow require you to perform a simulation study. Please reme
 
 Here is a conceptual diagram for how one might think about type I or type II error rates (or any other operating characteristic) for an analysis procedure. In a typical setting, there are population parameters that one hopes to estimate by collecting and analyzing data. The population parameters are unknown, and the accuracy of the conclusions is unknown.
 
-<!--html_preserve-->
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -83,7 +82,10 @@ B-&gt;C
 </title>
 <path fill="none" stroke="#000000" d="M294.0686,-107.7028C302.4128,-107.7028 310.9699,-107.7028 319.4373,-107.7028"/> <polygon fill="#000000" stroke="#000000" points="319.701,-111.2029 329.7009,-107.7028 319.7009,-104.2029 319.701,-111.2029"/> </g> <!-- C&#45;&gt;D --> <!-- E --> <!-- D&#45;&gt;E --> </g>
 </svg>
-<!--/html_preserve-->
+./simulation-tutorial\_files/a.svg
+
+![](%22./simulation-tutorial_files/a.svg%22)
+
 In a simulation setting, the researcher sets the population parameters then generates data using the parameters. After completing the analysis, the researcher can then evaluate the accuracy of the conclusions. If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
 
 The framework described above suggests how one my write modular code to perform the simulation. One can write a function to perform each of the primary tasks. For example:
