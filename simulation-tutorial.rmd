@@ -6,24 +6,22 @@ output:
     variant: markdown_github
 ---
 
-<style>
+<!-- <style> -->
+<!-- blockquote { -->
+<!-- background-color: #a6bddb50; -->
+<!-- font-family: "helvetica"; -->
+<!-- font-size:110%; -->
+<!-- } -->
 
-blockquote {
-background-color: #a6bddb50;
-font-family: "helvetica";
-font-size:110%;
-}
+<!-- blockquote li{ -->
+<!-- padding-bottom:10px; -->
+<!-- } -->
 
-blockquote li{
-padding-bottom:10px;
-}
-
-svg {
-width:none;
-height:none;
-}
-
-</style>
+<!-- svg { -->
+<!-- width:none; -->
+<!-- height:none; -->
+<!-- } -->
+<!-- </style> -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -89,7 +87,6 @@ node [shape = circle, label = 'Calculate\nerror\nrate', style = invis] E;
 A -> D [tailport = se, headport = s, style = invis]
 }
 ")
-a$height <- "auto"
 a %>% export_svg %>% HTML %>% cat(file = "./simulation-tutorial_files/a.svg")
 ```
 
@@ -126,9 +123,9 @@ node [shape = circle, label = 'Calculate\nerror\nrate'] E;
 A -> D [tailport = se, headport = s]
 }
 ")
-b$height <- "auto"
-#b %>% export_svg #%>% HTML #%>% html_print
+b %>% export_svg %>% HTML %>% cat(file = "./simulation-tutorial_files/b.svg")
 ```
+![](/simulation-tutorial_files/b.svg)
 
 The framework described above suggests how one my write modular code to perform the simulation.  One can write a function to perform each of the primary tasks.  For example:
 
@@ -161,9 +158,10 @@ node [shape = circle, label = 'mean()', fontname = 'monospace'] E;
 A -> D [tailport = se, headport = s]
 }
 ")
-c$height <- "auto"
-#c %>% export_svg %>% HTML #%>% html_print
+c %>% export_svg %>% HTML %>% cat(file = "./simulation-tutorial_files/c.svg")
 ```
+
+![](/simulation-tutorial_files/c.svg)
 
 ### Example
 

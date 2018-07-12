@@ -1,21 +1,17 @@
-<style>
-
-blockquote {
-background-color: #a6bddb50;
-font-family: "helvetica";
-font-size:110%;
-}
-
-blockquote li{
-padding-bottom:10px;
-}
-
-svg {
-width:none;
-height:none;
-}
-
-</style>
+<!-- <style> -->
+<!-- blockquote { -->
+<!-- background-color: #a6bddb50; -->
+<!-- font-family: "helvetica"; -->
+<!-- font-size:110%; -->
+<!-- } -->
+<!-- blockquote li{ -->
+<!-- padding-bottom:10px; -->
+<!-- } -->
+<!-- svg { -->
+<!-- width:none; -->
+<!-- height:none; -->
+<!-- } -->
+<!-- </style> -->
 Background
 ----------
 
@@ -49,7 +45,11 @@ Here is a conceptual diagram for how one might think about type I or type II err
 
 In a simulation setting, the researcher sets the population parameters then generates data using the parameters. After completing the analysis, the researcher can then evaluate the accuracy of the conclusions. If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
 
+![](/simulation-tutorial_files/b.svg)
+
 The framework described above suggests how one my write modular code to perform the simulation. One can write a function to perform each of the primary tasks. For example:
+
+![](/simulation-tutorial_files/c.svg)
 
 ### Example
 
