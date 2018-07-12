@@ -90,7 +90,8 @@ A -> D [tailport = se, headport = s, style = invis]
 }
 ")
 a$height <- "auto"
-a %>% export_svg %>% HTML #%>% html_print %>% readLines
+a %>% export_svg %>% HTML
+
 ```
 
 In a simulation setting, the researcher sets the population parameters then generates data using the parameters.  After completing the analysis, the researcher can then evaluate the accuracy of the conclusions.  If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
