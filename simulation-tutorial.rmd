@@ -90,7 +90,7 @@ A -> D [tailport = se, headport = s, style = invis]
 }
 ")
 a$height <- "auto"
-a %>% export_svg #%>% HTML #%>% html_print %>% readLines
+a %>% export_svg %>% HTML #%>% html_print %>% readLines
 ```
 
 In a simulation setting, the researcher sets the population parameters then generates data using the parameters.  After completing the analysis, the researcher can then evaluate the accuracy of the conclusions.  If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
@@ -125,7 +125,7 @@ A -> D [tailport = se, headport = s]
 }
 ")
 b$height <- "auto"
-b %>% export_svg #%>% HTML #%>% html_print
+#b %>% export_svg #%>% HTML #%>% html_print
 ```
 
 The framework described above suggests how one my write modular code to perform the simulation.  One can write a function to perform each of the primary tasks.  For example:
@@ -160,7 +160,7 @@ A -> D [tailport = se, headport = s]
 }
 ")
 c$height <- "auto"
-c %>% export_svg #%>% HTML #%>% html_print
+#c %>% export_svg %>% HTML #%>% html_print
 ```
 
 ### Example
