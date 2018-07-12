@@ -60,7 +60,7 @@ The questions that follow require you to perform a simulation study.  Please rem
 
 Here is a conceptual diagram for how one might think about type I or type II error rates (or any other operating characteristic) for an analysis procedure.  In a typical setting, there are population parameters that one hopes to estimate by collecting and analyzing data.  The population parameters are unknown, and the accuracy of the conclusions is unknown.
 
-```{r, fig.height = 3, echo = FALSE}
+```{r, echo = FALSE}
 a <- grViz("
 digraph boxes_and_circles {
 
