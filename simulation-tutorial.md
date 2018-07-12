@@ -143,30 +143,33 @@ abline(h = 0.8, col = "grey")
 </blockquote>
 1.  Write a brief paragraph comparing the familywise Type I error rates (FWER) of the three analysis methods (Proposals ONE, TWO, and THREE) for testing the 10 new therapies versus the control therapy. Report your error rates to three decimal places and design your methods so you have a high degree of certainty on the first two decimal places. <br><br> Write a second paragraph describing your methods for estimating these error rates in detail and provide supporting code and figures as appropriate. – Note: Clearly explaining what you were trying to do is very important if it turns out you have an error in your code. It helps the graders give you partial credit. <br> <br>
     <blockquote>
-    **Suggestions:**
-    <ul>
-    <li>
-    Write the functions <tt>generate\_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
-    <li>
-    Write <tt>generate\_data()</tt> so that one of the inputs is a vector of event probabilities corresponding to each arm of the study.
-    <li>
-    Write the analysis functions in a way that the input and output is exactly the same.
-    <li>
-    Write <tt>fwer()</tt> in a way so that it calculates the fwer regardless of the analysis method.
-    <li>
-    Write a <tt>one\_rep()</tt> function so that each generated dataset is analyzed by all three methods. Perhaps the output is a triple.
-    </ul>
-    </blockquote>
-2.  Write a brief paragraph offering intuition on why each the three methods behaved the way they did in part a. Attempt to explain why each method either 1) achieved a FWER of 5% exactly, 2) was conservative by achieving a FWER less than 5%, or 3) failed to keep FWER under 5%.
 
-3.  Write a brief paragraph comparing the Power of the three analysis methods (Proposals ONE, TWO, and THREE) for detecting that one new treatment, call it treatment A, is different than the control therapy assuming treatment A has a resolution rate of 26% and all the other therapies retain the control rate of 10%. Here Power is referring to the probability of detecting the effect of treatment A specifically. Missing the effect of A and finding a false positive effect in a different therapy doesn't count as a successful study. Report your Power estimates to three decimal places and design your methods so you have a high degree of certainty on the first two decimal places.<br> <br> Write a second paragraph describing your methods for estimating the Power in detail and provide supporting code and figures as appropriate.<br> <br>
-    <blockquote>
-    **Suggestion:** You should be able to complete this step by writing 1 additional function and reusing the code from part (a).
-    </blockquote>
-4.  Write a brief paragraph commenting on which method had the best Power out of the methods that controlled FWER at 5% or less. Attempt to offer insight into why the best performing method outperformed the others.
+**Suggestions:**
+<ul>
+<li>
+Write the functions <tt>generate\_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
+<li>
+Write <tt>generate\_data()</tt> so that one of the inputs is a vector of event probabilities corresponding to each arm of the study.
+<li>
+Write the analysis functions in a way that the input and output is exactly the same.
+<li>
+Write <tt>fwer()</tt> in a way so that it calculates the fwer regardless of the analysis method.
+<li>
+Write a <tt>one\_rep()</tt> function so that each generated dataset is analyzed by all three methods. Perhaps the output is a triple.
+</ul>
+</blockquote>
+1.  Write a brief paragraph offering intuition on why each the three methods behaved the way they did in part a. Attempt to explain why each method either 1) achieved a FWER of 5% exactly, 2) was conservative by achieving a FWER less than 5%, or 3) failed to keep FWER under 5%.
 
-5.  Assume that the settings for parts a and c were the only two scenarios that could occur with non-negligible probability and that they were equally likely to happen. Write a brief paragraph commenting on the False Discovery and False Non-Discovery Rates of the three approaches.<br> <br> Write a second paragraph describing your methods for estimating the FDR and FNR in detail and provide supporting code and figures as appropriate. After the study was done and it was being analyzed, analysts wouldn’t omnisciently know there is at most one real effect like we are assuming here. So it is important to allow the methods to potentially find more than one significant result in a given study.<br> <br> <br>
+2.  Write a brief paragraph comparing the Power of the three analysis methods (Proposals ONE, TWO, and THREE) for detecting that one new treatment, call it treatment A, is different than the control therapy assuming treatment A has a resolution rate of 26% and all the other therapies retain the control rate of 10%. Here Power is referring to the probability of detecting the effect of treatment A specifically. Missing the effect of A and finding a false positive effect in a different therapy doesn't count as a successful study. Report your Power estimates to three decimal places and design your methods so you have a high degree of certainty on the first two decimal places.<br> <br> Write a second paragraph describing your methods for estimating the Power in detail and provide supporting code and figures as appropriate.<br> <br>
     <blockquote>
-    **Suggestion:** You'll need to write an additional function for this step. It will also require you two output more than a single number from the <tt>oper\_char()</tt> function.
-    </blockquote>
-6.  Explain why the FDR and FNR are of interest to the statisticians designing the study. Attempt to offer insight into why the best performing method outperformed the others.
+
+**Suggestion:** You should be able to complete this step by writing 1 additional function and reusing the code from part (a).
+</blockquote>
+1.  Write a brief paragraph commenting on which method had the best Power out of the methods that controlled FWER at 5% or less. Attempt to offer insight into why the best performing method outperformed the others.
+
+2.  Assume that the settings for parts a and c were the only two scenarios that could occur with non-negligible probability and that they were equally likely to happen. Write a brief paragraph commenting on the False Discovery and False Non-Discovery Rates of the three approaches.<br> <br> Write a second paragraph describing your methods for estimating the FDR and FNR in detail and provide supporting code and figures as appropriate. After the study was done and it was being analyzed, analysts wouldn’t omnisciently know there is at most one real effect like we are assuming here. So it is important to allow the methods to potentially find more than one significant result in a given study.<br> <br> <br>
+    <blockquote>
+
+**Suggestion:** You'll need to write an additional function for this step. It will also require you two output more than a single number from the <tt>oper\_char()</tt> function.
+</blockquote>
+1.  Explain why the FDR and FNR are of interest to the statisticians designing the study. Attempt to offer insight into why the best performing method outperformed the others.

@@ -250,6 +250,7 @@ Write a second paragraph describing your methods for estimating these error rate
 <br>
 <br>
 <blockquote>
+
 **Suggestions:**
 <ul> 
 <li> Write the functions <tt>generate_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
@@ -267,6 +268,7 @@ c. Write a brief paragraph comparing the Power of the three analysis methods (Pr
 Write a second paragraph describing your methods for estimating the Power in detail and provide supporting code and figures as appropriate.<br>
 <br>
 <blockquote>
+
 **Suggestion:** You should be able to complete this step by writing 1 additional function and reusing the code from part (a).
 </blockquote>
 
@@ -278,6 +280,7 @@ Write a second paragraph describing your methods for estimating the FDR and FNR 
 <br>
 <br>
 <blockquote>
+
 **Suggestion:** You'll need to write an additional function for this step.  It will also require you two output more than a single number from the <tt>oper_char()</tt> function.
 </blockquote>
 
