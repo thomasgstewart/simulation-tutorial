@@ -272,8 +272,8 @@ d. Write a brief paragraph commenting on which method had the best Power out of 
 
 e. Assume that the settings for parts a and c were the only two scenarios that could occur with non-negligible probability and that they were equally likely to happen. Write a brief paragraph commenting on the False Discovery and False Non-Discovery Rates of the three approaches.<br>
 <br>
-Write a second paragraph describing your methods for estimating the FDR and FNR in detail and provide supporting code and figures as appropriate. After the study was done and it was being analyzed, analysts wouldn’t omnisciently know there is at most one real effect like we are assuming here. So it is important to allow the methods to potentially find more than one significant result in a given study.<br>
->
+Write a second paragraph describing your methods for estimating the FDR and FNR in detail and provide supporting code and figures as appropriate. After the study was done and it was being analyzed, analysts wouldn’t omnisciently know there is at most one real effect like we are assuming here. So it is important to allow the methods to potentially find more than one significant result in a given study.<br><blockquote>
 You'll need to write an additional function for this step.  It will also require you two output more than a single number from the <tt>oper_char()</tt> function.
+</blockquote>
 
 f. Explain why the FDR and FNR are of interest to the statisticians designing the study. Attempt to offer insight into why the best performing method outperformed the others.
