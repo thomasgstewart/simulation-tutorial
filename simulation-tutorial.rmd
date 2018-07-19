@@ -35,11 +35,11 @@ require(htmltools)
 
 ## What is an operating characteristic
 
-text here
+Operating characteristics are frequency properties of a procedure. They are the currency by which we evaluate and compare statistical procedures. Type I and II errors are opertating characteristics. So are the expected sample size, the distribution of stopping times in a clinical trial, the avergae length of a confidence interval, etc. These properties are premised on the classic "long-run" interpretation of probabilistic events. As such, they can be simulated by simply repeating the planned procedure and observing how often some event happens.
 
 ## General advice for computing tasks
 
-The questions in the previous section require you to perform a simulation study.  Please remember the tgs axioms of computing:
+So you want to perform a simulation study? Start with the tgs axioms of computing:
 
 1. **The act of turning on the computer does not magically endow you with understanding of your task.**  If you do not know how you will perform an analysis or simulation before you turn on your computer, you will not know how to do it afterwards either.
 
@@ -83,7 +83,9 @@ a %>% export_svg %>% HTML %>% cat(file = "./simulation-tutorial_files/a.svg")
 
 ![](/simulation-tutorial_files/a.svg)
 
-In a simulation setting, the researcher sets the population parameters then generates data using the parameters.  After completing the analysis, the researcher can then evaluate the accuracy of the conclusions.  If the research repeats this process several times, then she/he can estimate the long-run operating characteristics of the analysis procedure *for the specific set of population parameters*.
+In a simulation setting, the researcher sets the population parameters then generates data using the parameters. After completing the analysis, the researcher can then evaluate the accuracy of the conclusions. By repeating this process several times, the researcher can estimate the operating characteristics for *the specific set of population parameters used to simulate the data*. 
+
+**Caveat emptor:** Simulations are essentialy computational proofs on a case-by-case basis (e.g., this result happens for this parameter set, that result happens for that parameter set). It is up to you make the conneciton between different settings, notice patterns, and make a case for general patterns of behavior under certain circumstances. Simuations lack the natural generalizibiltiy of a mathematical proof, so the results don't necessary hold for all sets of parameter values. 
 
 ```{r, fig.height = 3, echo = FALSE, results='asis'}
 b <- grViz("
@@ -156,12 +158,11 @@ c %>% export_svg %>% HTML %>% cat(file = "./simulation-tutorial_files/c.svg")
 
 ## Example A
 
-Consider the example of a clinical trial comparing length-of-stay between a new surgical approach and a traditional surgical approach.  With the traditional surgical approach, length-of-stay follows a mixture distribution.  One fourth of the patients stay zero days in the hospital.  The other portion have a length-of-stay distribution that follows a discretized, shifted-by-one exponential with a mean of 4 days.  
-The researchers believe the new approach will not alter the number of subjects that will stay zero nights.  Rather, they believe that it will reduce the length-of-stay among patients that stay at least one night.
+A clinical trial is designed to compare a patient's length-of-stay between a new surgical approach and the traditional surgical approach. With the traditional surgical approach, length-of-stay follows a mixture distribution. One-fourth of patients stay zero days in the hospital. The other portion have a length-of-stay distribution that follows a discretized, shifted-by-one exponential with a mean of 4 days. It is believed that the new approach will not alter the number of subjects that stay zero nights. Rather, the new approach will reduce the length-of-stay among patients that stay at least one night.
 
-The primary endpoint will be analyzed with a Wilcoxon two sample test.
-
-Researchers want to know the minimal detectable difference at 80% power if they enroll 150 patients in each arm.
+The primary endpoint (length-of-stay) between the two groups will be comapred using a Wilcoxon two-sample test.
+ 
+You are asked to find the minimal detectable difference, with 80% power, if 150 patients are enrolled in each arm.
 
 ```{r}
 require(magrittr, quietly = TRUE)
@@ -215,6 +216,8 @@ if("simulation-results.rds" %in% list.files()){
 
 ### Results
 
+Tom -- The sample size is 300 (150 per group), no? Would be good to clarify...
+
 ```{r, warning = FALSE}
 ss1 %>% kable
 ```
@@ -233,18 +236,21 @@ abline(h = 0.8, col = "grey")
 (power_smooth - 0.8) %>% abs %>% which.min %>% `[`(xx, .) %>% abline(v = ., col = "grey")
 ```
 
+Conclusion: And we can see from the plot that ...
+
+Tom -- I think it would be helpful to connect the parameter to the shift in the #days. Either by adding it as an axis or by just adding it to the table. This way folks will make the connection between the parameter space, the change in outcome, and how often we detect it.
 
 ## Example B
 
-A pharmaceutical company has been commissioned to rapidly develop a new antibiotic that will be more effective against a specific bacterial infection that is  highly resistant to standard therapy. To speed up development the research team has  decided to simultaneously test 10 new candidate medications against standard therapy  in a randomized controlled trial. This has created methodological challenges the  biostatistical team is working to resolve.   
+A pharmaceutical company has been commissioned to rapidly develop a new antibiotic that will be more effective against a bacterial infections that are highly resistant to standard therapy. To speed up development, the research team has decided to simultaneously test 10 new candidate medications against standard therapy in a randomized controlled trial. This has created methodological challenges that the biostatistical team has been asked to resolve.
 
-They have agreed on a study design that will collect the study outcome (infection  resolved or not resolved within 14 days) on 400-500 patients for the standard therapy  (control arm) and 50-100 patients for each of the 10 candidate therapies (intervention  arms). For sake of estimating the operational characteristics of the proposed analysis  approaches, they assume each of the sample sizes will be uniformly distributed within  those ranges. They will also assume all patients' outcomes will be independent of each  other and the probability of resolution under standard therapy is 0.10.   
+The study is designed to collect the outcome (infection resolved or not resolved within 14 days) on 400-500 patients for the standard therapy (control arm) and 50-100 patients for each of the 10 candidate therapies (intervention arms). For sake of estimating the operational characteristics of the proposed analysis approaches, they agree to assume that the sample sizes are uniformly distributed between 50 and 100, or 400 and 500, as the case may be. They will also assume that all patients' outcomes are independent of each other and the probability of resolution under standard therapy is a measily 0.10.
 
-A group of biostatisticians (ONE) is concerned about controlling for the familywise  Type I error (FWER) for testing the 10 treatments against the control group all at once.  They propose first performing a single chi-square test on all 11 groups to test for any  differences. This test would be evaluated at a 5% significance level. If it was not  significant, they would conclude there were no differences in resolution rates. If it was  significant, they would then individually test each of the treatments against the control  with a chi-square test each at a 5% significance level. Any of those tests that returned p- values < 0.05 would be deemed statistically significant.    
+A group of biostatisticians (Group One) is concerned about controlling the familywise Type I error (FWER) when testing the 10 treatments against the control group all at once. They propose the following: first perform a single chi-square test on all 11 groups to test for any differences. This test would be evaluated at a 5% significance level. If it was not significant, they would conclude there were no differences in resolution rates. If it was significant, they would then individually test each of the treatments against the control with a chi-square test each at a 5% significance level. Any of these tests that return a p-value &lt; 0.05 would be deemed statistically significant.
 
-Another group of biostatisticians (TWO) is concerned about controlling for the FWER  without losing too much Power. They propose going straight to individually testing  each of the treatments against the control with chi-square tests, but doing a Bonferroni  correction to maintain a 5% familywise error rate. Any of those tests that returned p- values less than this threshold would be deemed statistically significant.   
+Another group of biostatisticians (Group Two) is concerned that controlling the FWER could reduce the power too much. They propose going straight to individually testing each of the treatments against the control with chi-square tests, but using a Bonferroni correction to maintain a 5% familywise error rate. Any of these tests that return p-values less than the Bonferroni threshold would be deemed statistically significant.   
 
-A third group of biostatisticians (THREE) is concerned about not focusing on what is  clinically meaningful and meaningless. They ask the researchers what a clinically  meaningful improvement would be. The researchers reply around a 15% absolute gain,  e.g. if the control had a 10% resolution rate, a treatment with a 25% rate would be truly  meaningful. Then the biostatisticians ask what would be a clinically trivial change from  the standard therapy. The team replies anything within a 2% absolute difference, e.g.  going from 10% to 12%, would be trivial -- essentially meaningless. Group THREE  proposes calculating the 95% confidence intervals for the risk difference for each of the  10 interventions vs the control, and deeming any interval that falls above a 2% absolute  improvement to be clinically nontrivial, i.e. when the CI has a lower bound > 0.02.    
+A third group of biostatisticians (Group Three) is concerned about ignoring what is clinically meaningful or meaningless. They ask the researchers what a clinically meaningful improvement would be. The researchers reply around a 15% absolute gain, e.g. if the control had a 10% resolution rate, a treatment with a 25% rate would be truly meaningful. Then the biostatisticians ask what would be a clinically trivial change from the standard therapy. The team replies anything within a 2% absolute difference, e.g. going from 10% to 12%, would be trivial -- essentially meaningless. Group THREE proposes calculating the 95% confidence intervals for the risk difference for each of the 10 interventions vs the control, and deeming any interval that falls above a 2% absolute improvement to be clinically nontrivial, i.e. when the CI has a lower bound &gt; 0.02.    
 
 For the tests, all the biostatisticians agree on using the default chi-square test function  in R, chisq.test(), with the default function settings. For the risk difference confidence  intervals, they agree to use the Agresti-Caffo interval as implemented by the wald2ci() function in the R package PropCIs.
 
@@ -262,13 +268,11 @@ Write a second paragraph describing your methods for estimating these error rate
 
 b. Write a brief paragraph offering intuition on why each the three methods behaved the way they did in part a. Attempt to explain why each method either 1) achieved a FWER of 5% exactly, 2) was conservative by achieving a FWER less than 5%, or 3) failed to keep FWER under 5%. 
 
-c. Write a brief paragraph comparing the Power of the three analysis methods (Proposals ONE, TWO, and THREE) for detecting that one new treatment, call it treatment A, is different than the control therapy assuming treatment A has a resolution rate of 26% and all the other therapies retain the control rate of 10%. Here Power is referring to the probability of detecting the effect of treatment A specifically. Missing the effect of A and finding a false positive effect in a different therapy doesn't count as a successful study. Report your Power estimates to three decimal places and design your methods so you have a high degree of certainty on the first two decimal places.<br>
-<br>
-Write a second paragraph describing your methods for estimating the Power in detail and provide supporting code and figures as appropriate.<blockquote>
+c. Write a brief paragraph comparing the power of the three analysis methods (Groups One, Two, and Three) for detecting that one new treatment, call it treatment A, is different than the control therapy assuming treatment A has a resolution rate of 26% and all the other therapies retain the control rate of 10%. Here power is referring to the probability of detecting the effect of treatment A specifically. Remember: Missing the effect of A and finding a false positive effect in a different therapy doesn't count as a successful study. Report your Power estimates to three decimal places and design your methods so you have a high degree of certainty on the first two decimal places.<br> <br> Write a second paragraph describing your methods for estimating these error rates. Be specific, provide detials, and attach supporting code and figures as appropriate.<blockquote>
 You should be able to complete this step by writing 1 additional function and reusing the code from part (a).
 </blockquote>
 
-d. Write a brief paragraph commenting on which method had the best Power out of the methods that controlled FWER at 5% or less. Attempt to offer insight into why the best performing method outperformed the others.
+d. Write a brief paragraph commenting on which method had the best Power out of the methods that controlled FWER at 5% or less. Offer insight into why the best performing method outperformed the others.
 
 e. Assume that the settings for parts a and c were the only two scenarios that could occur with non-negligible probability and that they were equally likely to happen. Write a brief paragraph commenting on the False Discovery and False Non-Discovery Rates of the three approaches.<br>
 <br>
