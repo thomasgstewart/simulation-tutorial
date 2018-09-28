@@ -256,7 +256,7 @@ a. Write a brief paragraph comparing the familywise Type I error rates (FWER) of
 <br><br>
 Write a second paragraph describing your methods for estimating these error rates in detail and provide supporting code and figures as appropriate. – Note: Clearly explaining what you were trying to do is very important if it turns out you have an error in your code. It helps the graders give you partial credit.<blockquote>
 <ul> 
-<li> Write the functions <tt>generate\_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
+<li> Write the functions `generate_data()`, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
 <li> Write <tt>generate_data()</tt> so that one of the inputs is a vector of event probabilities corresponding to each arm of the study.
 <li> Write the analysis functions in a way that the input and output is exactly the same.
 <li> Write <tt>fwer()</tt> in a way so that it calculates the fwer regardless of the analysis method.
