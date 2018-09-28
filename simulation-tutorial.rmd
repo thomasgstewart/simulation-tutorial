@@ -162,7 +162,7 @@ A clinical trial is designed to compare a patient's length-of-stay between a new
 
 The primary endpoint (length-of-stay) between the two groups will be comapred using a Wilcoxon two-sample test.
  
-You are asked to find the minimal detectable difference, with 80% power, if 150 patients are enrolled in each arm.
+You are asked to find the minimal detectable difference, with 80% power, if 150 patients are enrolled **in each arm**.
 
 ```{r}
 require(magrittr, quietly = TRUE)
@@ -216,10 +216,8 @@ if("simulation-results.rds" %in% list.files()){
 
 ### Results
 
-Tom -- The sample size is 300 (150 per group), no? Would be good to clarify...
-
 ```{r, warning = FALSE}
-ss1 %>% kable
+ss1 %>% data.table::setnames("N","N (per arm)") %>% kable
 ```
 
 ### Power plot
@@ -236,9 +234,9 @@ abline(h = 0.8, col = "grey")
 (power_smooth - 0.8) %>% abs %>% which.min %>% `[`(xx, .) %>% abline(v = ., col = "grey")
 ```
 
-Conclusion: And we can see from the plot that ...
+**What is the conclusion from the plot?**
 
-Tom -- I think it would be helpful to connect the parameter to the shift in the #days. Either by adding it as an axis or by just adding it to the table. This way folks will make the connection between the parameter space, the change in outcome, and how often we detect it.
+**What is the connection between the parameter and the primary endpoint?  What might we add to the figure to add context?** 
 
 ## Example B
 
@@ -258,7 +256,7 @@ a. Write a brief paragraph comparing the familywise Type I error rates (FWER) of
 <br><br>
 Write a second paragraph describing your methods for estimating these error rates in detail and provide supporting code and figures as appropriate. – Note: Clearly explaining what you were trying to do is very important if it turns out you have an error in your code. It helps the graders give you partial credit.<blockquote>
 <ul> 
-<li> Write the functions <tt>generate_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
+<li> Write the functions <tt>generate\_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
 <li> Write <tt>generate_data()</tt> so that one of the inputs is a vector of event probabilities corresponding to each arm of the study.
 <li> Write the analysis functions in a way that the input and output is exactly the same.
 <li> Write <tt>fwer()</tt> in a way so that it calculates the fwer regardless of the analysis method.

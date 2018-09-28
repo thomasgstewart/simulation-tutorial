@@ -53,7 +53,7 @@ A clinical trial is designed to compare a patient's length-of-stay between a new
 
 The primary endpoint (length-of-stay) between the two groups will be comapred using a Wilcoxon two-sample test.
 
-You are asked to find the minimal detectable difference, with 80% power, if 150 patients are enrolled in each arm.
+You are asked to find the minimal detectable difference, with 80% power, if 150 patients are enrolled **in each arm**.
 
 ``` r
 require(magrittr, quietly = TRUE)
@@ -106,21 +106,19 @@ if("simulation-results.rds" %in% list.files()){
 
 ### Results
 
-Tom -- The sample size is 300 (150 per group), no? Would be good to clarify...
-
 ``` r
-ss1 %>% kable
+ss1 %>% data.table::setnames("N","N (per arm)") %>% kable
 ```
 
-|      M|    N|  trt\_effect|   power|
-|------:|----:|------------:|-------:|
-|  10000|  150|         0.00|  0.0524|
-|  10000|  150|         0.33|  0.0751|
-|  10000|  150|         0.67|  0.1838|
-|  10000|  150|         1.00|  0.3935|
-|  10000|  150|         1.33|  0.6565|
-|  10000|  150|         1.67|  0.8970|
-|  10000|  150|         2.00|  0.9846|
+|      M|  N (per arm)|  trt\_effect|   power|
+|------:|------------:|------------:|-------:|
+|  10000|          150|         0.00|  0.0524|
+|  10000|          150|         0.33|  0.0751|
+|  10000|          150|         0.67|  0.1838|
+|  10000|          150|         1.00|  0.3935|
+|  10000|          150|         1.33|  0.6565|
+|  10000|          150|         1.67|  0.8970|
+|  10000|          150|         2.00|  0.9846|
 
 ### Power plot
 
@@ -137,9 +135,9 @@ abline(h = 0.8, col = "grey")
 
 ![](simulation-tutorial_files/figure-markdown_github/unnamed-chunk-7-1.svg)
 
-Conclusion: And we can see from the plot that ...
+**What is the conclusion from the plot?**
 
-Tom -- I think it would be helpful to connect the parameter to the shift in the \#days. Either by adding it as an axis or by just adding it to the table. This way folks will make the connection between the parameter space, the change in outcome, and how often we detect it.
+**What is the connection between the parameter and the primary endpoint? What might we add to the figure to add context?**
 
 Example B
 ---------
