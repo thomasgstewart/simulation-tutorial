@@ -158,7 +158,7 @@ For the tests, all the biostatisticians agree on using the default chi-square te
     <blockquote>
     <ul>
     <li>
-    Write the functions `generate_data()`, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
+    Write the functions <tt>generate\_data()</tt>, <tt>analysis1()</tt>, <tt>analysis2()</tt>, <tt>analysis3()</tt>, <tt>fwer()</tt>.
     <li>
     Write <tt>generate\_data()</tt> so that one of the inputs is a vector of event probabilities corresponding to each arm of the study.
     <li>
